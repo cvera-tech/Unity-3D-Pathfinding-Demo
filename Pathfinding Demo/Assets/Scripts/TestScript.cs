@@ -5,17 +5,31 @@ using UnityEngine;
 public class TestScript : MonoBehaviour
 {
     private Map testMap;
+    private bool toggle = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        testMap = gameObject.AddComponent<Map>();    // Create a default map (10*10 flat tiles)
+        testMap = gameObject.AddComponent<Map>();
+        testMap.Initialize();
         testMap.CreateMapTiles();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space) && !toggle)
+        {
+            toggle = true;
+            List<MapNode> newNodes = new List<MapNode>()
+            {
+                new MapNode(0, 0, Terrain.Flat),
+                new MapNode(0, 1, Terrain.Hill),
+                new MapNode(1, 0, Terrain.Hill),
+                new MapNode(1, 1, Terrain.Flat)
+            };
+            testMap.Initialize(2, 2, newNodes);
+            testMap.CreateMapTiles();
+        }
     }
 }

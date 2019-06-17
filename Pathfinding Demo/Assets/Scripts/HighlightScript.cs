@@ -14,28 +14,32 @@ public class HighlightScript : MonoBehaviour
     void Start()
     {
         tileMaterial = GetComponent<Renderer>().material;
+        //map = GetComponentInParent<Map>();
+        //Debug.Log(map);
     }
-    /* 
+    
     void OnMouseEnter()
     { 
         Highlight();
-        List<Node> adjNodes = GetComponent<Node>().AdjacentNodes(GetComponentInParent<Map>());
-        foreach (Node n in adjNodes)
+        Map map = GetComponentInParent<Map>();
+        List<MapNode> adjNodes = map.AdjacentNodes(GetComponent<Tile>().nodeInfo);
+        foreach (MapNode mn in adjNodes)
         {
-            n.gameObject.GetComponent<HighlightScript>().Highlight();
+            map.TileAt(mn).gameObject.GetComponent<HighlightScript>().Highlight();
         }
     }
 
     void OnMouseExit()
     {
         Revert();
-        List<Node> adjNodes = GetComponent<Node>().AdjacentNodes(GetComponentInParent<Map>());
-        foreach (Node n in adjNodes)
+        Map map = GetComponentInParent<Map>();
+        List<MapNode> adjNodes = map.AdjacentNodes(GetComponent<Tile>().nodeInfo);
+        foreach (MapNode mn in adjNodes)
         {
-            n.gameObject.GetComponent<HighlightScript>().Revert();
+            map.TileAt(mn).gameObject.GetComponent<HighlightScript>().Revert();
         }
     }
-    */
+   
     public void Highlight() => GetComponent<Renderer>().material = Materials.Instance.highlight;
     public void Revert() => GetComponent<Renderer>().material = tileMaterial;
 }

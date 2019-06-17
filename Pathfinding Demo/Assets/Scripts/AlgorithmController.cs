@@ -12,7 +12,6 @@ public class AlgorithmController : MonoBehaviour
     {
         TMP_Dropdown dropdown = canvas.GetComponentInChildren<TMP_Dropdown>();
         int currentValue = dropdown.value;
-        Debug.Log(currentValue);
         currentAlgorithm = dropdown.options[currentValue].text;
     }
 
