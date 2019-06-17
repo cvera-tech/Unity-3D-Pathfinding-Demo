@@ -1,0 +1,1 @@
+﻿public enum Terrain : byte {Flat, Hill, Forest, HillForest};

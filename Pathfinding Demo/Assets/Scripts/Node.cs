@@ -1,18 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-//using UnityEngine;
+using UnityEngine;
 
 public class Node
 {
     private int x;
-    private int y;
-    //public enum terrainTag : byte {Flat, Hill, Forest, HillForest};
-
-    public Node (int x, int y)
+    private int z;
+    private Terrain terrain;
+    private GameObject tile;    // The GameObject that represents this node in the scene
+    
+    public Node (int x, int z)
     {
         this.x = x;
-        this.y = y;
+        this.z = z;
+        this.terrain = Terrain.Flat;
     }
+
+    public Node (int x, int z, Terrain terrain)
+    {
+        this.x = x;
+        this.z = z;
+        this.terrain = terrain;
+    }
+    
+    // Properties
+    public int X { get => x; }
+    public int Z { get => z; }
+    public Terrain Terrain { get => terrain; set => terrain = value; }
+    public GameObject Tile { get => tile; set => tile = value; }
 
     public List<Node> AdjacentNodes(in Map map) 
     {
@@ -21,25 +36,22 @@ public class Node
         // Check for nodes on the edges of the graph
         if (this.x != 0)
         {
-            adjNodes.Add(map.Graph[this.x - 1, this.y]);
+            adjNodes.Add(map.NodeAt(this.x - 1, this.z));
         }
         if (this.x != map.MaxX)
         {
-            adjNodes.Add(map.Graph[this.x + 1, this.y]);
+            adjNodes.Add(map.NodeAt(this.x + 1, this.z));
         }
-        if (this.y != 0)
+        if (this.z != 0)
         {
-            adjNodes.Add(map.Graph[this.x, this.y - 1]);
+            adjNodes.Add(map.NodeAt(this.x, this.z - 1));
         }
-        if (this.y != map.MaxY)
+        if (this.z != map.MaxZ)
         {
-            adjNodes.Add(map.Graph[this.x, this.y + 1]);
+            adjNodes.Add(map.NodeAt(this.x, this.z + 1));
         }
         return adjNodes;
     }
 
-    public override string ToString() 
-    {
-        return "[" + this.x + ", " + this.y + "]";
-    }
+    public override string ToString() => "[" + this.x + ", " + this.z + "]";
 }
