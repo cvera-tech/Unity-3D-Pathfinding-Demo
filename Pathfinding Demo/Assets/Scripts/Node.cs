@@ -2,56 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node
+public class Node : MonoBehaviour
 {
     private int x;
     private int z;
     private Terrain terrain;
-    private GameObject tile;    // The GameObject that represents this node in the scene
     
-    public Node (int x, int z)
+    public static Node Create(in Map map, int x, int z, Terrain terrain = Terrain.Flat) 
     {
-        this.x = x;
-        this.z = z;
-        this.terrain = Terrain.Flat;
-    }
-
-    public Node (int x, int z, Terrain terrain)
-    {
-        this.x = x;
-        this.z = z;
-        this.terrain = terrain;
+        Prefabs prefabs = Prefabs.Instance;
+        GameObject tilePrefab;
+        switch (terrain)
+        {
+            case Terrain.Flat:
+                tilePrefab = prefabs.flatTile;
+                break;
+            case Terrain.Hill:
+                tilePrefab = prefabs.hillTile;
+                break;
+            default:
+                tilePrefab = prefabs.flatTile;
+                break;
+        }
+        GameObject newTile = Instantiate(tilePrefab, new Vector3(x, 0, z), Quaternion.identity, map.transform);  // Create the GameObject as a child of the Map GameObject
+        Node n = newTile.AddComponent<Node>();  // Add and initialize the Node script to the GameObject
+        n.X = x;
+        n.Z = z;
+        n.Terrain = terrain;
+        newTile.name = n.ToString(); // Make sure each tile has a unique name
+        newTile.AddComponent<HighlightScript>();
+        return n;
     }
     
     // Properties
-    public int X { get => x; }
-    public int Z { get => z; }
+    public int X { get => x; set => x = value; }
+    public int Z { get => z; set => z = value; }
     public Terrain Terrain { get => terrain; set => terrain = value; }
-    public GameObject Tile { get => tile; set => tile = value; }
 
     public List<Node> AdjacentNodes(in Map map) 
     {
         List<Node> adjNodes = new List<Node>();
 
         // Check for nodes on the edges of the graph
-        if (this.x != 0)
+        if (x > 0)
         {
-            adjNodes.Add(map.NodeAt(this.x - 1, this.z));
+            adjNodes.Add(map.NodeAt(x - 1, z));
         }
-        if (this.x != map.MaxX)
+        if (x < map.MaxX - 1)
         {
-            adjNodes.Add(map.NodeAt(this.x + 1, this.z));
+            adjNodes.Add(map.NodeAt(x + 1, z));
         }
-        if (this.z != 0)
+        if (z > 0)
         {
-            adjNodes.Add(map.NodeAt(this.x, this.z - 1));
+            adjNodes.Add(map.NodeAt(x, z - 1));
         }
-        if (this.z != map.MaxZ)
+        if (z < map.MaxZ - 1)
         {
-            adjNodes.Add(map.NodeAt(this.x, this.z + 1));
+            adjNodes.Add(map.NodeAt(x, z + 1));
         }
         return adjNodes;
     }
 
-    public override string ToString() => "[" + this.x + ", " + this.z + "]";
+    public override string ToString() => "[" + x + ", " + z + "]";
 }

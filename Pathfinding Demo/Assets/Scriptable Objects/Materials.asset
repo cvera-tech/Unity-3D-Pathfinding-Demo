@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b99df0589d464438c7944a7cec9e63, type: 3}
-  m_Name: Prefabs
+  m_Script: {fileID: 11500000, guid: 8b69335e341fbf942aeb26fe90ebba8d, type: 3}
+  m_Name: Materials
   m_EditorClassIdentifier: 
-  flatTile: {fileID: 1553480391992727178, guid: 020ffc1a029e70b4f8b5e1c305d9615a,
-    type: 3}
-  hillTile: {fileID: 7193136311404700762, guid: 4bed9c5506afc7542ab4fcbc7b86cb80,
-    type: 3}
+  highlight: {fileID: 2100000, guid: 9e9a07b8e926455499e7330c93a18302, type: 2}
