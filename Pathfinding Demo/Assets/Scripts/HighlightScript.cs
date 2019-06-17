@@ -15,6 +15,7 @@ public class HighlightScript : MonoBehaviour
     {
         tileMaterial = GetComponent<Renderer>().material;
     }
+    /* 
     void OnMouseEnter()
     { 
         Highlight();
@@ -34,7 +35,7 @@ public class HighlightScript : MonoBehaviour
             n.gameObject.GetComponent<HighlightScript>().Revert();
         }
     }
-
+    */
     public void Highlight() => GetComponent<Renderer>().material = Materials.Instance.highlight;
     public void Revert() => GetComponent<Renderer>().material = tileMaterial;
 }

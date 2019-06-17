@@ -46,10 +46,10 @@ public class Map : MonoBehaviour
         {
             for (int j = 0; j < maxZ; j++, count++)
             {
-                if (count % 2 == 0)
+                // if (count % 2 == 0)
                     graph.Add(Node.Create(this, i, j));
-                else
-                    graph.Add(Node.Create(this, i, j, Terrain.Hill));
+                // else
+                //     graph.Add(Node.Create(this, i, j, Terrain.Hill));
             }
         }
     }
