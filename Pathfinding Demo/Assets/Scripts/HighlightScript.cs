@@ -14,8 +14,6 @@ public class HighlightScript : MonoBehaviour
     void Start()
     {
         tileMaterial = GetComponent<Renderer>().material;
-        //map = GetComponentInParent<Map>();
-        //Debug.Log(map);
     }
     
     void OnMouseEnter()
