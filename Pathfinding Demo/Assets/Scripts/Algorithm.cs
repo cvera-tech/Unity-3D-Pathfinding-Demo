@@ -7,5 +7,7 @@ public abstract class Algorithm
     public Map map;
     public MapNode startNode;
     public MapNode endNode;
+
+    //public abstract void Initialize(Map map, MapNode startNode, MapNode endNode);
     public abstract void Step();
 }
