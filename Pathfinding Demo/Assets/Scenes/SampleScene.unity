@@ -1736,6 +1736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs: {fileID: 11400000, guid: 589202ad6a1022c428df9c0ba45a81dc, type: 2}
   materials: {fileID: 11400000, guid: 63bb6ae18c450c9428fc0a047543219e, type: 2}
+  tileCosts: {fileID: 11400000, guid: 039832d633987ee4ab46745d9da52286, type: 2}
 --- !u!1 &1912160849
 GameObject:
   m_ObjectHideFlags: 0

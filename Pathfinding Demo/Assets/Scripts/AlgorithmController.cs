@@ -6,7 +6,7 @@ using TMPro;
 public class AlgorithmController : MonoBehaviour
 {
     public Canvas canvas;
-    private string currentAlgorithm;
+    private string currentAlgorithmName;
     private bool algorithmRunning;
     private LayerMask tileMask;
     public Ray ray;
@@ -16,7 +16,7 @@ public class AlgorithmController : MonoBehaviour
     {
         TMP_Dropdown dropdown = canvas.GetComponentInChildren<TMP_Dropdown>();
         int currentValue = dropdown.value;
-        currentAlgorithm = dropdown.options[currentValue].text;
+        currentAlgorithmName = dropdown.options[currentValue].text;
         algorithmRunning = false;
         tileMask = LayerMask.GetMask("Tiles");
     }
@@ -47,8 +47,8 @@ public class AlgorithmController : MonoBehaviour
 
     public void ChangeAlgorithm()
     {
-        currentAlgorithm = canvas.GetComponentInChildren<TMP_Dropdown>().options[canvas.GetComponentInChildren<TMP_Dropdown>().value].text;
-        Debug.Log(currentAlgorithm);
+        currentAlgorithmName = canvas.GetComponentInChildren<TMP_Dropdown>().options[canvas.GetComponentInChildren<TMP_Dropdown>().value].text;
+        Debug.Log(currentAlgorithmName);
     }
 
     public void Begin()

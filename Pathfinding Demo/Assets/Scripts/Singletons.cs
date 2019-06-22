@@ -4,4 +4,5 @@ public class Singletons : MonoBehaviour
 {
     public Prefabs prefabs;
     public Materials materials;
+    public TileCosts tileCosts;
 }

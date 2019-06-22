@@ -13,6 +13,9 @@ public class TestScript : MonoBehaviour
         testMap = gameObject.AddComponent<Map>();
         testMap.Initialize();
         testMap.CreateMapTiles();
+
+        Dijkstra d = new Dijkstra(testMap, testMap.Graph[0], testMap.NodeAt(5, 8));
+        d.Run();
     }
 
     // Update is called once per frame
